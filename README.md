@@ -1,6 +1,20 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# SJTU Flow Control Chart
+
+![Deploy to Github Pages](https://github.com/SeanChao/libsjtu/workflows/Deploy%20to%20Github%20Pages/badge.svg)
+
+🏫 A web page showing real-time flow in libraries and canteens.
+
+🚀 已部署至 [Github Pages](https://seanchao.github.io/libsjtu/)
+
+## Intro
+
+Data is fetch from official websites: [canteens](https://canteen.sjtu.edu.cn/) | [libraries](http://www.lib.sjtu.edu.cn/).
+
+Due to CORS policy constrictions, library data is proxied by a simple Cloudflare worker.
 
 ## Available Scripts
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 
