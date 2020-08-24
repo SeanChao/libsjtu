@@ -7,9 +7,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "eslint \"**/*.js\" --fix && prettier \"**/*.{css,js,json,md}\" --write",
-    "format:check": "eslint \"**/*.js\" && prettier-check \"**/*.{css,js,json,md}\"",
-    "format:staged": "eslint \"**/*.js\" --fix && pretty-quick --staged --verbose --pattern \"**/*.{css,js,json,md}\""
+    "format": "eslint \"**/*.js\" --fix && prettier \"**/*.{css,html,js,json,md}\" --write",
+    "format:check": "eslint \"**/*.js\" && prettier-check \"**/*.{css,html,js,json,md}\"",
+    "format:staged": "eslint \"**/*.js\" --fix && pretty-quick --staged --verbose --pattern \"**/*.{css,html,js,json,md}\""
   },
   "eslintConfig": {
     "extends": "react-app"

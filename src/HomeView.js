@@ -47,8 +47,8 @@ const HomeView = () => {
     <>
       <Container>
         <Grid container justify="center">
-          <ListView title="📖" data={dataLib.map((e) => ({ name: e.areaName, rest: e.max - e.inCounter, max: e.max }))} />
-          <ListView title="🍴" data={dataCanteen.map((e) => ({ name: e.Name, rest: e.Seat_s - e.Seat_u, max: e.Seat_s }))} />
+          <ListView title="📖" data={dataLib} />
+          <ListView title="🍴" data={dataCanteen} />
         </Grid>
         <Snackbar
           anchorOrigin={{

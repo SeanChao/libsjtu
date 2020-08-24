@@ -26,7 +26,7 @@ const Bar = (props) => {
       scheme = 'blue';
     } else if (val >= 25) {
       scheme = 'yellow';
-    } else if (val >= 0) {
+    } else if (val < 25) {
       scheme = 'red';
     } else {
       scheme = 'default';
