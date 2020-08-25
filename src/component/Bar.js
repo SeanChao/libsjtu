@@ -9,7 +9,7 @@ const colorList = {
   blue: ['#2196f3', '#e3f2fd'],
   yellow: ['#ff9800', '#fff3e0'],
   red: ['#f44336', '#fbe9e7'],
-  default: ['#90caf9', '#a6d4fa'],
+  default: ['#eceff1', '#607d8b'],
 };
 
 const Bar = (props) => {

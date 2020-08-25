@@ -10,19 +10,28 @@ const HomeView = () => {
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [snackbarMsg, setSnackbarMsg] = useState('');
 
+  const [libDataLoading, setLibDataLoading] = useState(true);
+  const [canteenDataLoading, setCanteenDataLoading] = useState(true);
+
   const fetchData = async () => {
     const openSnackbar = (msg) => {
       setShowSnackbar(true);
       setSnackbarMsg(msg);
     };
     getCanteenData(
-      (data) => setDataCanteen(data),
+      (data) => {
+        setDataCanteen(data);
+        setCanteenDataLoading(false);
+      },
       () => {
         openSnackbar('😥 获取食堂数据失败');
       }
     );
     getLibraryData(
-      (data) => setDataLib(data),
+      (data) => {
+        setDataLib(data);
+        setLibDataLoading(false);
+      },
       () => {
         openSnackbar('😫 获取图书馆数据失败');
       }
@@ -46,9 +55,13 @@ const HomeView = () => {
   return (
     <>
       <Container>
-        <Grid container justify="center">
-          <ListView title="📖" data={dataLib} />
-          <ListView title="🍴" data={dataCanteen} />
+        <Grid container justify="center" direction="column" spacing={2}>
+          <Grid item style={{ marginTop: '20px' }}>
+            <ListView title="📖" data={dataLib} loading={libDataLoading} />
+          </Grid>
+          <Grid item>
+            <ListView title="🍴" data={dataCanteen} loading={canteenDataLoading} />
+          </Grid>
         </Grid>
         <Snackbar
           anchorOrigin={{
