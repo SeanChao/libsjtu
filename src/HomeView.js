@@ -43,7 +43,7 @@ const HomeView = () => {
   }, [snackbarMsg]);
 
   useEffect(() => {
-    const interval = setInterval(() => fetchData(), 20000);
+    const interval = setInterval(() => fetchData(), 10000);
     return () => clearInterval(interval);
   }, []);
 

@@ -8,7 +8,7 @@
 
 ## Intro
 
-Data is fetch from official websites: [canteens](https://canteen.sjtu.edu.cn/) | [libraries](http://www.lib.sjtu.edu.cn/).
+Data is fetched from official websites: [canteens](https://canteen.sjtu.edu.cn/) | [libraries](http://www.lib.sjtu.edu.cn/).
 
 Due to CORS policy constrictions, library data is proxied by a simple Cloudflare worker.
 
