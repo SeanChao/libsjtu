@@ -1,10 +1,21 @@
 import React from 'react';
-import HomeView from './HomeView';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import AboutView from './view/About';
+import HomeView from './view/HomeView';
 
 function App() {
   return (
     <div className="App">
-      <HomeView />
+      <Router basename={process.env.PUBLIC_URL}>
+        <Switch>
+          <Route path="/about">
+            <AboutView />
+          </Route>
+          <Route path="/">
+            <HomeView />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

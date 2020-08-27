@@ -8,3 +8,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+a {
+  color: #0366d6;
+  text-decoration: none;
+}

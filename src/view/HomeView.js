@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import ListView from './component/ListView';
+import ListView from '../component/ListView';
 import { Container, Grid, Snackbar } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
-import { getCanteenData, getLibraryData } from './lib/fetcher';
+import { getCanteenData, getLibraryData } from '../lib/fetcher';
+import Footer from '../component/Footer';
 
 const HomeView = () => {
   const [dataCanteen, setDataCanteen] = useState([]);
@@ -74,6 +75,7 @@ const HomeView = () => {
         >
           <MuiAlert severity="error">{snackbarMsg}</MuiAlert>
         </Snackbar>
+        <Footer />
       </Container>
     </>
   );
