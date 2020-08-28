@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Bar from './Bar';
 import PropTypes from 'prop-types';
 import { Grid, CircularProgress } from '@material-ui/core';
 
 const ListView = (props) => {
   const title = props.title;
-  const listData =
-    props.data && props.data.length > 0
-      ? props.data.sort((a, b) => {
-          if (a.max === 0) {
-            return 1;
-          } else if (b.max === 0) {
-            return -1;
-          }
-          return b.rest / b.max - a.rest / a.max;
-        })
-      : [];
+  const listData = useMemo(
+    () =>
+      props.data && props.data.length > 0
+        ? [...props.data].sort((a, b) => {
+            if (a.max === 0) {
+              return 1;
+            } else if (b.max === 0) {
+              return -1;
+            }
+            return b.rest / b.max - a.rest / a.max;
+          })
+        : [],
+    [props.data]
+  );
   const renderList = (list) =>
     list.map((ele) => (
       <Grid item key={ele.name}>
