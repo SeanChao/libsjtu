@@ -8,14 +8,10 @@ const ListView = (props) => {
   const listData = useMemo(
     () =>
       props.data && props.data.length > 0
-        ? [...props.data].sort((a, b) => {
-            if (a.max === 0) {
-              return 1;
-            } else if (b.max === 0) {
-              return -1;
-            }
-            return b.rest / b.max - a.rest / a.max;
-          })
+        ? props.data
+            .filter((e) => e.max !== 0)
+            .sort((a, b) => b.rest / b.max - a.rest / a.max)
+            .concat(props.data.filter((e) => e.max === 0))
         : [],
     [props.data]
   );
