@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import ListView from '../component/ListView';
-import { Container, Grid, Snackbar } from '@material-ui/core';
+import { Container, Grid, Snackbar, Tab, Tabs } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 import { getCanteenData, getLibraryData } from '../lib/fetcher';
 import Footer from '../component/Footer';
+import { useLocalStorageState } from 'ahooks';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  campusFilter: {
+    marginTop: theme.spacing(1),
+  },
+}));
+
+const filterCampus = (dataList, campusId) => dataList.filter((item) => (campusId === 0) ^ item.name.includes('徐汇'));
 
 const HomeView = () => {
+  const classes = useStyles();
+  const [campus, setCampus] = useLocalStorageState('campus', 0);
+
   const [dataCanteen, setDataCanteen] = useState([]);
   const [dataLib, setDataLib] = useState([]);
   const [showSnackbar, setShowSnackbar] = useState(false);
@@ -56,12 +69,18 @@ const HomeView = () => {
   return (
     <>
       <Container>
+        <div className={classes.campusFilter}>
+          <Tabs value={campus} indicatorColor="primary" textColor="primary" onChange={(_, value) => setCampus(value)} centered>
+            <Tab label="闵行" />
+            <Tab label="徐汇" />
+          </Tabs>
+        </div>
         <Grid container justify="center" direction="column" spacing={2}>
           <Grid item style={{ marginTop: '20px' }}>
-            <ListView title="📖" data={dataLib} loading={libDataLoading} />
+            <ListView title="📖" data={filterCampus(dataLib, campus)} loading={libDataLoading} />
           </Grid>
           <Grid item>
-            <ListView title="🍴" data={dataCanteen} loading={canteenDataLoading} />
+            <ListView title="🍴" data={filterCampus(dataCanteen, campus)} loading={canteenDataLoading} />
           </Grid>
         </Grid>
         <Snackbar
