@@ -6,6 +6,7 @@ import { getCanteenData, getLibraryData } from '../lib/fetcher';
 import Footer from '../component/Footer';
 import { useLocalStorageState } from 'ahooks';
 import { makeStyles } from '@material-ui/core/styles';
+import SubList from '../component/SubList';
 
 const useStyles = makeStyles((theme) => ({
   campusFilter: {
@@ -26,6 +27,8 @@ const HomeView = () => {
 
   const [libDataLoading, setLibDataLoading] = useState(true);
   const [canteenDataLoading, setCanteenDataLoading] = useState(true);
+
+  const [canteenSublist, setCanteenSublist] = useLocalStorageState('canteenSubList', [[], []]);
 
   const fetchData = async () => {
     const openSnackbar = (msg) => {
@@ -54,7 +57,7 @@ const HomeView = () => {
 
   useEffect(() => {
     fetchData();
-  }, [snackbarMsg]);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => fetchData(), 10000);
@@ -64,6 +67,13 @@ const HomeView = () => {
   const closeSnackbar = () => {
     setShowSnackbar(false);
     setSnackbarMsg('');
+  };
+
+  const toggleCanteenSublist = (idx) => {
+    const updatedCtSublist = canteenSublist[campus].includes(idx) ? canteenSublist[campus].filter((e) => e !== idx) : canteenSublist[campus].concat(idx);
+    const newList = [...canteenSublist];
+    newList[campus] = updatedCtSublist;
+    setCanteenSublist(newList);
   };
 
   return (
@@ -78,9 +88,21 @@ const HomeView = () => {
         <Grid container justify="center" direction="column" spacing={2}>
           <Grid item style={{ marginTop: '20px' }}>
             <ListView title="📖" data={filterCampus(dataLib, campus)} loading={libDataLoading} />
+            <div style={{ marginTop: '16px' }}>
+              <a href="http://booking.lib.sjtu.edu.cn/" target="_blank" rel="noopener noreferrer" style={{ marginLeft: '10px' }}>
+                图书馆预约
+              </a>
+            </div>
           </Grid>
           <Grid item>
-            <ListView title="🍴" data={filterCampus(dataCanteen, campus)} loading={canteenDataLoading} />
+            <ListView
+              title="🍴"
+              data={filterCampus(dataCanteen, campus)}
+              loading={canteenDataLoading}
+              onClick={(idx) => toggleCanteenSublist(idx)}
+              renderSubitem={(ele, idx) => <SubList id={idx} data={ele} />}
+              subList={canteenSublist[campus]}
+            />
           </Grid>
         </Grid>
         <Snackbar

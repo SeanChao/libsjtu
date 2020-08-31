@@ -1,4 +1,4 @@
-import { Container } from '@material-ui/core';
+import { Container, Divider } from '@material-ui/core';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -43,6 +43,8 @@ const AboutView = () => (
       </p>
       <h2>反馈</h2>
       <a href="https://github.com/SeanChao/libsjtu/issues">GitHub Issues</a>
+      <p></p>
+      <Divider />
       <p></p>
       <Link to="/">返回</Link>
     </Container>
